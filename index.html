@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <base href="/profile/">
+  <title>Digvijay Gavas — Profile</title>
+  <style>
+    :root{--bg:#f7f7fb;--card:#fff;--accent:#0b5fff;--muted:#666}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;background:var(--bg);color:#222}
+    .wrap{max-width:900px;margin:48px auto;padding:24px}
+    .card{background:var(--card);border-radius:12px;padding:28px;box-shadow:0 6px 18px rgba(20,20,50,0.06)}
+    header{display:flex;gap:20px;align-items:center}
+    img.avatar{width:96px;height:96px;border-radius:12px;object-fit:cover}
+    h1{margin:0;font-size:1.6rem}
+    p.lead{margin:6px 0;color:var(--muted)}
+    .links a{margin-right:12px;color:var(--accent);text-decoration:none}
+    section{margin-top:20px}
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .proj{padding:12px;border-radius:8px;background:#fafafa;border:1px solid #eee}
+    footer{margin-top:28px;color:var(--muted);font-size:0.9rem}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="card">
+      <header>
+        <img class="avatar" src="https://via.placeholder.com/300" alt="Digvijay Gavas" />
+        <div>
+          <h1>Digvijay Gavas</h1>
+          <p class="lead">Software engineer • Open-source enthusiast • Your short tagline here</p>
+          <div class="links">
+            <a href="https://github.com/digvijay-gavas" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+            <a href="mailto:you@example.com">Email</a>
+          </div>
+        </div>
+      </header>
+
+      <section id="about">
+        <h2>About</h2>
+        <p>Replace this paragraph with a short bio about you—what you build, technologies you like, and what you're working on now.</p>
+      </section>
+
+      <section id="projects">
+        <h2>Selected projects</h2>
+        <div class="projects">
+          <div class="proj">
+            <strong>Project A</strong>
+            <div style="color:var(--muted);font-size:0.9rem">Short description — link to project</div>
+          </div>
+          <div class="proj">
+            <strong>Project B</strong>
+            <div style="color:var(--muted);font-size:0.9rem">Short description — link to project</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Resume: <a href="#" target="_blank">PDF</a> · Email: you@example.com</p>
+      </section>
+
+      <footer>
+        <div>Built with ❤️ · Last updated: 2026-09-02</div>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
