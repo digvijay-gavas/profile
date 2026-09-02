@@ -1,70 +1,523 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <base href="/profile/">
-  <title>Digvijay Gavas — Profile</title>
-  <style>
-    :root{--bg:#f7f7fb;--card:#fff;--accent:#0b5fff;--muted:#666}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;background:var(--bg);color:#222}
-    .wrap{max-width:900px;margin:48px auto;padding:24px}
-    .card{background:var(--card);border-radius:12px;padding:28px;box-shadow:0 6px 18px rgba(20,20,50,0.06)}
-    header{display:flex;gap:20px;align-items:center}
-    img.avatar{width:96px;height:96px;border-radius:12px;object-fit:cover}
-    h1{margin:0;font-size:1.6rem}
-    p.lead{margin:6px 0;color:var(--muted)}
-    .links a{margin-right:12px;color:var(--accent);text-decoration:none}
-    section{margin-top:20px}
-    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-    .proj{padding:12px;border-radius:8px;background:#fafafa;border:1px solid #eee}
-    footer{margin-top:28px;color:var(--muted);font-size:0.9rem}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<base href="/profile/">
+<title>Digvijay Gavas</title>
+<meta name="description" content="Digvijay Gavas — PLM engineer and technology enthusiast building AI solutions for the PLM domain." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --blueprint:#0d2b4e;
+    --blueprint-deep:#0a2038;
+    --blueprint-panel:#0f3257;
+    --line:#cfe8ff;
+    --line-dim:rgba(207,232,255,0.62);
+    --line-faint:rgba(207,232,255,0.32);
+    --grid:rgba(207,232,255,0.09);
+    --grid-major:rgba(207,232,255,0.16);
+    --amber:#e8934a;
+    --amber-soft:rgba(232,147,74,0.16);
+    --amber-line:rgba(232,147,74,0.55);
+    --white:#f6faff;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--blueprint);
+    color:var(--line);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .sheet{
+    position:relative;
+    max-width:960px;
+    margin:0 auto;
+    background-image:
+      repeating-linear-gradient(0deg, var(--grid) 0px, var(--grid) 1px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(90deg, var(--grid) 0px, var(--grid) 1px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(0deg, var(--grid-major) 0px, var(--grid-major) 1px, transparent 1px, transparent 160px),
+      repeating-linear-gradient(90deg, var(--grid-major) 0px, var(--grid-major) 1px, transparent 1px, transparent 160px);
+    border-left:1px solid var(--line-faint);
+    border-right:1px solid var(--line-faint);
+  }
+
+  .crop{
+    position:absolute;
+    width:18px;height:18px;
+    border-color:var(--line-dim);
+    border-style:solid;
+    opacity:0.8;
+  }
+  .crop.tl{top:14px;left:14px;border-width:1px 0 0 1px;}
+  .crop.tr{top:14px;right:14px;border-width:1px 1px 0 0;}
+  .crop.bl{bottom:14px;left:14px;border-width:0 0 1px 1px;}
+  .crop.br{bottom:14px;right:14px;border-width:0 1px 1px 0;}
+
+  section{
+    position:relative;
+    padding:56px clamp(24px,6vw,72px);
+  }
+
+  .rule{
+    border:none;
+    border-top:1px dashed var(--line-faint);
+    margin:0;
+  }
+
+  .sheet-label{
+    position:absolute;
+    top:16px;
+    right:clamp(24px,6vw,72px);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    color:var(--line-dim);
+    text-transform:uppercase;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:80px;
+    padding-bottom:64px;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:40px;
+    align-items:center;
+  }
+
+  .avatar-wrap{
+    position:relative;
+    width:148px;
+    height:148px;
+    flex-shrink:0;
+  }
+  .avatar-ring{
+    position:absolute;
+    inset:-10px;
+    border:1px solid var(--line-faint);
+    border-radius:50%;
+  }
+  .avatar-ring::before,.avatar-ring::after{
+    content:"";
+    position:absolute;
+    background:var(--line-faint);
+  }
+  .avatar-ring::before{ top:-1px; left:50%; width:1px; height:10px; transform:translateX(-50%);}
+  .avatar-ring::after{ bottom:-1px; left:50%; width:1px; height:10px; transform:translateX(-50%);}
+  .avatar{
+    width:148px;
+    height:148px;
+    border-radius:50%;
+    border:2px solid var(--amber);
+    background:var(--blueprint-panel);
+    display:block;
+    object-fit:cover;
+    filter:grayscale(0.15) contrast(1.04);
+  }
+
+  .hero-text .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:clamp(42px,6vw,68px);
+    line-height:0.94;
+    letter-spacing:0.01em;
+    margin:0 0 14px 0;
+    color:var(--white);
+    text-wrap:balance;
+  }
+  .role-line{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px;
+    color:var(--line-dim);
+    line-height:1.7;
+  }
+  .role-line b{ color:var(--line); font-weight:500; }
+
+  .links{
+    margin-top:22px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    color:var(--line);
+    text-decoration:none;
+    border:1px solid var(--line-faint);
+    padding:9px 16px;
+    border-radius:2px;
+    transition:border-color .15s ease, color .15s ease, background .15s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .links a:hover{ border-color:var(--amber); color:var(--white); background:var(--amber-soft); }
+  .links a .dot{ width:5px; height:5px; border-radius:50%; background:var(--amber); }
+
+  /* ---------- SECTION HEADS ---------- */
+  .head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:34px;
+  }
+  .head .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--amber);
+    border:1px solid var(--amber-line);
+    padding:3px 8px;
+    border-radius:2px;
+    letter-spacing:0.05em;
+  }
+  .head h2{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:700;
+    font-size:clamp(24px,3vw,32px);
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    color:var(--white);
+    margin:0;
+  }
+  .head .fill{ flex:1; border-top:1px dashed var(--line-faint); }
+
+  /* ---------- ABOUT ---------- */
+  .about p{
+    font-size:16.5px;
+    line-height:1.75;
+    color:var(--line-dim);
+    max-width:66ch;
+    margin:0 0 16px 0;
+  }
+  .about p:last-child{ margin-bottom:0; }
+  .about strong{ color:var(--white); font-weight:600; }
+  .about .tag{ color:var(--amber); font-weight:500; }
+
+  /* ---------- TIMELINE (revision block) ---------- */
+  .rev-table{ width:100%; border-collapse:collapse; }
+  .rev-table thead th{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--line-dim);
+    text-align:left;
+    padding:0 14px 12px 0;
+    border-bottom:1px solid var(--line-faint);
+    font-weight:500;
+  }
+  .rev-table td{
+    padding:16px 14px 16px 0;
+    border-bottom:1px solid var(--grid-major);
+    vertical-align:top;
+    font-size:14.5px;
+    line-height:1.6;
+  }
+  .rev-table tr:last-child td{ border-bottom:none; }
+  .rev-table .rev-id{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--amber);
+    white-space:nowrap;
+    font-size:13px;
+  }
+  .rev-table .rev-date{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--line-dim);
+    white-space:nowrap;
+    font-size:13px;
+  }
+  .rev-table .rev-role{ color:var(--white); font-weight:600; }
+  .rev-table .rev-desc{ color:var(--line-dim); }
+  .rev-table .rev-current{
+    display:inline-block;
+    margin-left:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.08em;
+    color:var(--blueprint-deep);
+    background:var(--amber);
+    padding:2px 6px;
+    border-radius:2px;
+    vertical-align:middle;
+  }
+
+  /* ---------- SPEC SHEET (skills) ---------- */
+  .spec-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+    gap:1px;
+    background:var(--line-faint);
+    border:1px solid var(--line-faint);
+  }
+  .spec-cell{
+    background:var(--blueprint);
+    padding:22px 24px;
+  }
+  .spec-cell .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:12px;
+  }
+  .spec-cell .items{
+    font-size:14px;
+    line-height:1.9;
+    color:var(--line-dim);
+  }
+  .spec-cell .items b{ color:var(--line); font-weight:500; }
+
+  /* ---------- PROJECTS (callouts) ---------- */
+  .callouts{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:22px;
+  }
+  .callout{
+    border:1px solid var(--line-faint);
+    padding:22px 22px 20px;
+    position:relative;
+  }
+  .callout::before{
+    content:"";
+    position:absolute;
+    top:-1px; left:20px;
+    width:10px; height:10px;
+    border-radius:50%;
+    background:var(--blueprint);
+    border:1px solid var(--amber);
+  }
+  .callout h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    letter-spacing:0.02em;
+    color:var(--white);
+    margin:6px 0 10px 0;
+    font-weight:600;
+  }
+  .callout p{
+    font-size:13.5px;
+    line-height:1.65;
+    color:var(--line-dim);
+    margin:0 0 14px 0;
+  }
+  .callout a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--amber);
+    text-decoration:none;
+    border-bottom:1px solid var(--amber-line);
+    padding-bottom:1px;
+  }
+  .callout a:hover{ color:var(--white); border-color:var(--line); }
+
+  /* ---------- TITLE BLOCK (footer) ---------- */
+  footer{
+    padding:0;
+  }
+  .title-block{
+    border-top:1px solid var(--line-faint);
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+  }
+  .tb-cell{
+    padding:20px clamp(20px,4vw,32px);
+    border-left:1px solid var(--line-faint);
+  }
+  .tb-cell:first-child{ border-left:none; }
+  .tb-cell .k{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--line-dim);
+    margin-bottom:6px;
+  }
+  .tb-cell .v{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--white);
+  }
+  .tb-cell .v a{ color:var(--white); text-decoration:none; border-bottom:1px solid var(--line-faint); }
+  .tb-cell .v a:hover{ border-color:var(--amber); color:var(--amber); }
+
+  @media (max-width:640px){
+    .hero{ grid-template-columns:1fr; text-align:left; }
+    .title-block{ grid-template-columns:1fr 1fr; }
+    .tb-cell:nth-child(3){ border-left:none; }
+    .rev-table thead{ display:none; }
+    .rev-table td{ display:block; padding:4px 0; border-bottom:none; }
+    .rev-table tr{ display:block; padding:16px 0; border-bottom:1px solid var(--grid-major); }
+  }
+</style>
 </head>
 <body>
-  <main class="wrap">
-    <div class="card">
-      <header>
-        <img class="avatar" src="https://via.placeholder.com/300" alt="Digvijay Gavas" />
-        <div>
-          <h1>Digvijay Gavas</h1>
-          <p class="lead">Software engineer • Open-source enthusiast • Your short tagline here</p>
-          <div class="links">
-            <a href="https://github.com/digvijay-gavas" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-            <a href="mailto:you@example.com">Email</a>
-          </div>
-        </div>
-      </header>
 
-      <section id="about">
-        <h2>About</h2>
-        <p>Replace this paragraph with a short bio about you—what you build, technologies you like, and what you're working on now.</p>
-      </section>
 
-      <section id="projects">
-        <h2>Selected projects</h2>
-        <div class="projects">
-          <div class="proj">
-            <strong>Project A</strong>
-            <div style="color:var(--muted);font-size:0.9rem">Short description — link to project</div>
-          </div>
-          <div class="proj">
-            <strong>Project B</strong>
-            <div style="color:var(--muted);font-size:0.9rem">Short description — link to project</div>
-          </div>
-        </div>
-      </section>
+<div class="sheet">
+  <span class="crop tl"></span><span class="crop tr"></span>
+  <span class="crop bl"></span><span class="crop br"></span>
 
-      <section id="contact">
-        <h2>Contact</h2>
-        <p>Resume: <a href="#" target="_blank">PDF</a> · Email: you@example.com</p>
-      </section>
-
-      <footer>
-        <div>Built with ❤️ · Last updated: 2026-09-02</div>
-      </footer>
+  <section class="hero">
+    <div class="sheet-label">DWG NO. DG&#8209;2026&#8209;01 &nbsp;·&nbsp; SHEET 1 OF 5</div>
+    <div class="avatar-wrap">
+      <div class="avatar-ring"></div>
+      <img class="avatar" src="avatar.jpg" alt="Digvijay Gavas" />
     </div>
-  </main>
+    <div class="hero-text">
+      <div class="eyebrow">Profile / Elevation View</div>
+      <h1>Digvijay<br>Gavas</h1>
+      <div class="role-line">
+        <b>PLM Engineer &amp; Technology Enthusiast</b><br>
+        Now building AI solutions for the PLM domain at CTGT
+      </div>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/digvijay-gavas-91529478/" target="_blank" rel="noopener"><span class="dot"></span>LinkedIn</a>
+        <a href="https://github.com/digvijay-gavas" target="_blank" rel="noopener"><span class="dot"></span>GitHub</a>
+        <a href="mailto:digvijay.gavas@gmail.com"><span class="dot"></span>digvijay.gavas@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="about">
+    <div class="head"><span class="num">01</span><h2>About</h2><span class="fill"></span></div>
+    <p>I'm a <strong>mechanical engineer by training and a software engineer by trade</strong> &mdash; a combination that has quietly shaped everything since. A Master's in Mechanical Engineering (Thermal) gave me an instinct for how physical products come together; a decade inside <strong>Teamcenter and the PLM stack</strong> taught me how that same product data moves, breaks, and gets stitched back together across CAD, BOM, and change-management systems.</p>
+    <p>Since <strong>2016</strong> I've worked across the full PLM lifecycle &mdash; as a Teamcenter admin, a DevOps engineer wiring up CI/CD for enterprise deployments, and a senior developer building customizations in ITK C++, Active Workspace React, and T4EA integrations for automotive, aerospace-adjacent, and certification clients across Germany, the UK, and India.</p>
+    <p>These days that same curiosity points at <span class="tag">AI in the PLM domain</span> &mdash; applying LLMs and automation to the unglamorous, high-value problems of product data: parsing, migration, document intelligence, and connecting engineering systems that were never designed to talk to each other. Outside of work, I'm the person prototyping a robot arm on a weekend or writing a Python script to generate 3D-printable geometry for a physicist's density field, purely because it's fun.</p>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="head"><span class="num">02</span><h2>Career Timeline</h2><span class="fill"></span></div>
+    <table class="rev-table">
+      <thead>
+        <tr><th style="width:70px">Rev</th><th style="width:130px">Date</th><th>Role &amp; Focus</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rev-id">REV&nbsp;A</td>
+          <td class="rev-date">2016 &ndash; 2017</td>
+          <td><span class="rev-role">Teamcenter Admin</span><br><span class="rev-desc">Started in PLM operations &mdash; managing a distributed Teamcenter install across a Linux multi-server environment for a leading automotive OEM.</span></td>
+        </tr>
+        <tr>
+          <td class="rev-id">REV&nbsp;B</td>
+          <td class="rev-date">2017 &ndash; 2018</td>
+          <td><span class="rev-role">DevOps Engineer</span><br><span class="rev-desc">Owned Teamcenter CI/CD &mdash; Jenkins pipelines, build/deploy automation, and environment cloning for a large-scale PLM rollout.</span></td>
+        </tr>
+        <tr>
+          <td class="rev-id">REV&nbsp;C</td>
+          <td class="rev-date">2019 &ndash; 2021</td>
+          <td><span class="rev-role">Software Developer &rarr; Sr. Software Developer</span><br><span class="rev-desc">Shipped Teamcenter/3rd-party integrations, refactored a GWT UI to Angular, and built cross-system automation spanning CATIA, Node.js, and PL/SQL.</span></td>
+        </tr>
+        <tr>
+          <td class="rev-id">REV&nbsp;D</td>
+          <td class="rev-date">2021 &ndash; 2022</td>
+          <td><span class="rev-role">Sr. Software Developer &rarr; PLM Consultant</span><br><span class="rev-desc">Led BOM Sync automation for a PLM product team, then designed and implemented ECR/ECN/MCN change-management processes for an electric-vehicle OEM.</span></td>
+        </tr>
+        <tr>
+          <td class="rev-id">REV&nbsp;E</td>
+          <td class="rev-date">2022 &ndash; 2025</td>
+          <td><span class="rev-role">Sr. Software Developer</span><br><span class="rev-desc">Architected a Teamcenter-based Document Management platform for a global certification agency &mdash; React/Active Workspace UI, 3D viewer integration, and large-scale data migration.</span></td>
+        </tr>
+        <tr>
+          <td class="rev-id">REV&nbsp;F</td>
+          <td class="rev-date">2025 &ndash; Present</td>
+          <td><span class="rev-role">Sr. Software Developer, CTGT<span class="rev-current">CURRENT</span></span><br><span class="rev-desc">Building AI-driven solutions for the PLM domain &mdash; while continuing hands-on Teamcenter/SAP connector and RAC customization work for automotive clients.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="head"><span class="num">03</span><h2>Spec Sheet</h2><span class="fill"></span></div>
+    <div class="spec-grid">
+      <div class="spec-cell">
+        <div class="label">Languages</div>
+        <div class="items">C / C++ &middot; Java &middot; Python &middot; JavaScript / React &middot; C# &middot; Node.js &middot; PL/SQL &middot; Shell / Bash</div>
+      </div>
+      <div class="spec-cell">
+        <div class="label">PLM &amp; CAD</div>
+        <div class="items"><b>Teamcenter</b> (ITK, BMIDE, Active Workspace, T4EA) &middot; CATIA &middot; OnShape / SolidWorks</div>
+      </div>
+      <div class="spec-cell">
+        <div class="label">DevOps &amp; Tools</div>
+        <div class="items">Jenkins &middot; Docker &middot; Git/SVN &middot; Azure DevOps &middot; JIRA &middot; Confluence &middot; Postman</div>
+      </div>
+      <div class="spec-cell">
+        <div class="label">Now Exploring</div>
+        <div class="items"><b>AI / LLM applications in PLM</b> &middot; document intelligence &middot; data-model automation &middot; robotics &middot; 3D printing</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="head"><span class="num">04</span><h2>Side Projects</h2><span class="fill"></span></div>
+    <div class="callouts">
+      <div class="callout">
+        <h3>Autonomous Robot Build</h3>
+        <p>Battery-powered wireless robot with a 2-DOF arm, built for a robotics competition &mdash; race, pick-and-place, and a custom line-following algorithm running on Arduino, controlled via a Java desktop app.</p>
+        <a href="https://github.com/digvijay-gavas/RemoteApp" target="_blank" rel="noopener">github.com/digvijay-gavas/RemoteApp &rarr;</a>
+      </div>
+      <div class="callout">
+        <h3>Density-Field 3D Printing</h3>
+        <p>Wrote a Python algorithm to generate 3D-printable geometry representing a given density field for an astrophysics PhD student &mdash; optimized to minimize support material.</p>
+        <a href="https://github.com/digvijay-gavas/3D-Printing-Density-Field" target="_blank" rel="noopener">github.com/digvijay-gavas/3D-Printing-Density-Field &rarr;</a>
+      </div>
+      <div class="callout">
+        <h3>City-Sleeps (Multiplayer Game)</h3>
+        <p>Built a 5&ndash;15 player social-deduction game in JSP, self-hosted on a Google Cloud Linux box via Tomcat, and played over video calls with friends.</p>
+        <a href="https://github.com/digvijay-gavas/city-sleeps" target="_blank" rel="noopener">github.com/digvijay-gavas/city-sleeps &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <footer>
+    <div class="title-block">
+      <div class="tb-cell">
+        <div class="k">Name</div>
+        <div class="v">Digvijay Gavas</div>
+      </div>
+      <div class="tb-cell">
+        <div class="k">Education</div>
+        <div class="v">M.E. Mechanical (Thermal), 2016<br>Pune University</div>
+      </div>
+      <div class="tb-cell">
+        <div class="k">Contact</div>
+        <div class="v"><a href="mailto:digvijay.gavas@gmail.com">digvijay.gavas@gmail.com</a></div>
+      </div>
+      <div class="tb-cell">
+        <div class="k">Rev / Scale</div>
+        <div class="v">REV F &middot; 1:1</div>
+      </div>
+    </div>
+  </footer>
+</div>
 </body>
 </html>
