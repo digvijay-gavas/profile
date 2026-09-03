@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<base href="/profile/">
+<title>Writing — Digvijay Gavas</title>
+<meta name="description" content="Notes and essays by Digvijay Gavas." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --blueprint:#0d2b4e;
+    --line:#cfe8ff;
+    --line-dim:rgba(207,232,255,0.62);
+    --line-faint:rgba(207,232,255,0.32);
+    --grid:rgba(207,232,255,0.09);
+    --grid-major:rgba(207,232,255,0.16);
+    --amber:#e8934a;
+    --amber-soft:rgba(232,147,74,0.16);
+    --amber-line:rgba(232,147,74,0.55);
+    --white:#f6faff;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--blueprint);
+    color:var(--line);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .sheet{
+    position:relative;
+    max-width:760px;
+    margin:0 auto;
+    background-image:
+      repeating-linear-gradient(0deg, var(--grid) 0px, var(--grid) 1px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(90deg, var(--grid) 0px, var(--grid) 1px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(0deg, var(--grid-major) 0px, var(--grid-major) 1px, transparent 1px, transparent 160px),
+      repeating-linear-gradient(90deg, var(--grid-major) 0px, var(--grid-major) 1px, transparent 1px, transparent 160px);
+    border-left:1px solid var(--line-faint);
+    border-right:1px solid var(--line-faint);
+    min-height:100vh;
+  }
+
+  .crop{
+    position:absolute;
+    width:18px;height:18px;
+    border-color:var(--line-dim);
+    border-style:solid;
+    opacity:0.8;
+  }
+  .crop.tl{top:14px;left:14px;border-width:1px 0 0 1px;}
+  .crop.tr{top:14px;right:14px;border-width:1px 1px 0 0;}
+  .crop.bl{bottom:14px;left:14px;border-width:0 0 1px 1px;}
+  .crop.br{bottom:14px;right:14px;border-width:0 1px 1px 0;}
+
+  section{
+    position:relative;
+    padding:56px clamp(24px,6vw,72px);
+  }
+
+  .sheet-label{
+    position:absolute;
+    top:16px;
+    right:clamp(24px,6vw,72px);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    color:var(--line-dim);
+    text-transform:uppercase;
+  }
+
+  .back{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    color:var(--line-dim);
+    text-decoration:none;
+    margin-bottom:32px;
+  }
+  .back:hover{ color:var(--amber); }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:clamp(34px,5.5vw,52px);
+    line-height:1.04;
+    letter-spacing:0.01em;
+    margin:0 0 14px 0;
+    color:var(--white);
+  }
+  .sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--line-dim);
+    margin-bottom:44px;
+    padding-bottom:28px;
+    border-bottom:1px dashed var(--line-faint);
+    max-width:56ch;
+    line-height:1.7;
+  }
+
+  .list{ display:flex; flex-direction:column; }
+  .entry{
+    display:block;
+    text-decoration:none;
+    padding:26px 0;
+    border-bottom:1px solid var(--grid-major);
+    position:relative;
+  }
+  .entry:first-child{ padding-top:0; }
+  .entry:last-child{ border-bottom:none; }
+  .entry .row{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:8px;
+  }
+  .entry .id{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--amber);
+    border:1px solid var(--amber-line);
+    padding:2px 7px;
+    border-radius:2px;
+  }
+  .entry h2{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:700;
+    font-size:22px;
+    letter-spacing:0.01em;
+    color:var(--white);
+    margin:0;
+    transition:color .15s ease;
+  }
+  .entry:hover h2{ color:var(--amber); }
+  .entry p{
+    font-size:14px;
+    line-height:1.7;
+    color:var(--line-dim);
+    max-width:60ch;
+    margin:0 0 8px 0;
+  }
+  .entry .meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    color:var(--line-faint);
+    text-transform:uppercase;
+  }
+
+  footer{ padding:0; }
+  .title-block{
+    border-top:1px solid var(--line-faint);
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr;
+  }
+  .tb-cell{
+    padding:20px clamp(20px,4vw,32px);
+    border-left:1px solid var(--line-faint);
+  }
+  .tb-cell:first-child{ border-left:none; }
+  .tb-cell .k{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--line-dim);
+    margin-bottom:6px;
+  }
+  .tb-cell .v{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--white);
+  }
+  .tb-cell .v a{ color:var(--white); text-decoration:none; border-bottom:1px solid var(--line-faint); }
+  .tb-cell .v a:hover{ border-color:var(--amber); color:var(--amber); }
+
+  @media (max-width:640px){
+    .title-block{ grid-template-columns:1fr; }
+    .tb-cell{ border-left:none; border-top:1px solid var(--line-faint); }
+    .tb-cell:first-child{ border-top:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <span class="crop tl"></span><span class="crop tr"></span>
+  <span class="crop bl"></span><span class="crop br"></span>
+
+  <section>
+    <div class="sheet-label">DWG NO. DG&#8209;BLOG&#8209;INDEX</div>
+    <a class="back" href="./">&larr; Back to Profile</a>
+    <div class="eyebrow">Notebook</div>
+    <h1>Writing</h1>
+    <div class="sub">Notes and essays, mostly handwritten first, typed up here with spelling corrected and nothing else changed.</div>
+
+    <div class="list">
+      <a class="entry" href="blogs/blog_1_enshittification/">
+        <div class="row"><span class="id">01</span><h2>World Could Be a Better Place</h2></div>
+        <p>On smart devices, subscription lock-in, and why capitalism keeps finding new ways to make you feel like you don&rsquo;t own the thing you bought &mdash; and why there&rsquo;s still hope.</p>
+        <div class="meta">Essay &middot; Handwritten</div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="title-block">
+      <div class="tb-cell">
+        <div class="k">Author</div>
+        <div class="v">Digvijay Gavas</div>
+      </div>
+      <div class="tb-cell">
+        <div class="k">Profile</div>
+        <div class="v"><a href="./">&larr; digvijay-gavas</a></div>
+      </div>
+      <div class="tb-cell">
+        <div class="k">Rev / Scale</div>
+        <div class="v">REV A &middot; 1:1</div>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
